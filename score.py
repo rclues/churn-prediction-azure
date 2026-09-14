@@ -5,8 +5,8 @@ import os
 
 def init():
     global model, scaler
-    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'model.pkl')
-    scaler_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'scaler.pkl')
+    model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'model_package', 'model.pkl')
+    scaler_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'model_package', 'scaler.pkl')
     model = joblib.load(model_path)
     scaler = joblib.load(scaler_path)
 
