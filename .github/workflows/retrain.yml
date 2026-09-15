@@ -1,0 +1,37 @@
+name: Retrain Model
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'data/**'
+      - 'train_model.ipynb'
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas scikit-learn joblib jupyter nbconvert
+
+      - name: Run training notebook
+        run: |
+          jupyter nbconvert --to notebook --execute train_model.ipynb --output train_model.ipynb
+
+      - name: Commit updated model
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add model.pkl scaler.pkl model_package/
+          git diff --staged --quiet || git commit -m "Auto-retrain model [skip ci]"
+          git push
