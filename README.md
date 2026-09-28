@@ -6,6 +6,9 @@ An end-to-end machine learning project that predicts customer churn, deployed as
 
 Customer churn (customers leaving a service) directly impacts revenue. This project trains a model to predict which customers are likely to churn, so businesses can intervene proactively.
 
+> **Note:** This project was fully built, deployed, and tested live on Azure ML — see demo screenshots below. The Azure endpoint is currently paused as the free student credits have been used; the code, model, and CI/CD pipeline remain fully functional and can be redeployed.
+
+
 ## Architecture
 
 ```
